@@ -85,6 +85,12 @@ augroup indent_guides
     autocmd VimEnter * :IndentGuidesEnable
   endif
 
+  if g:indent_guides_exclude_buftype
+    if has('patch-7.4-786')
+      autocmd indent_guides OptionSet buftype call indent_guides#process_autocmds()
+    endif
+  endif
+
   autocmd BufEnter,WinEnter,FileType * call indent_guides#process_autocmds()
 
   " Trigger BufEnter and process modelines.
