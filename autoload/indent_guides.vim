@@ -275,10 +275,8 @@ endfunction
 " Detect if any of the buffer filetypes should be excluded.
 "
 function! indent_guides#exclude_filetype()
-  if exists('g:indent_guides_exclude_buftype')
-    if g:indent_guides_exclude_buftype && &buftype != ''
-      return 1
-    endif
+  if g:indent_guides_exclude_buftype && &buftype != ''
+    return 1
   endif
   for ft in split(&ft, '\.')
     if index(g:indent_guides_exclude_filetypes, ft) > -1
